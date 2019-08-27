@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="winamp_grey">#504866</color>
+    <color name="colorPrimaryDark">#504866</color>
+    <!--<color name="colorPrimaryDark">#FFFFD6</color>-->
+    <color name="colorAccent">#FFFFD6</color>
 </resources>
