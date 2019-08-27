@@ -3,5 +3,8 @@
     <color name="winamp_grey">#504866</color>
     <color name="colorPrimaryDark">#504866</color>
     <!--<color name="colorPrimaryDark">#FFFFD6</color>-->
+    <!--<color name="colorPrimaryDark">#7D7498</color>-->
     <color name="colorAccent">#FFFFD6</color>
+    <color name="winamp_green">#54BF4E</color>
+    <color name="black">#000000</color>
 </resources>
