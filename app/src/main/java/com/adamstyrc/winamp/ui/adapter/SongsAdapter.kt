@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.adamstyrc.Song
 import com.adamstyrc.winamp.R
-import com.adamstyrc.winamp.ui.model.Song
 
 class SongsAdapter(
     val context: Context,
@@ -36,7 +36,7 @@ class SongsAdapter(
         fun bindCurrencyRate(song: Song, position: Int) {
             tvSongIndex.text = "$position."
             tvSongName.text = song.name
-            tvSongDuration.text = "${song.duration}"
+            tvSongDuration.text = "${song.releaseYear}"
         }
     }
 }
