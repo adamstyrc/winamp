@@ -1,30 +1,30 @@
 package com.adamstyrc.api.response
 
 import com.adamstyrc.Song
+import com.adamstyrc.extensions.year
+import java.util.*
 
 data class ITunesSongsResponse(
     var resultCount: Int?,
     var results: List<Result>?
 ) {
 
-    fun toSongs() : List<Song> {
+    fun toSongs() =
         if (results == null) {
-            return emptyList()
+            emptyList()
         } else {
-            return results!!.map {
-//                if (it.trackName != null
-//                    && it.artistName != null) {
-                    return@map Song(it.trackName!!, it.artistName!!, 2020)
-//                }
+            results!!.map {
+                Song(
+                    it.trackName!!,
+                    it.artistName!!,
+                    it.releaseDate?.year()
+                )
             }
         }
-
-    }
 
     data class Result(
         var artistName: String?,
         var trackName: String?,
-        var trackTimeMillis: Long?,
-        var releaseDate: String?
+        var releaseDate: Date?
     )
 }

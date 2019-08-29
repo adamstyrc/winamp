@@ -32,8 +32,7 @@ class MainActivity : AppCompatActivity() {
             .subscribeBy(
                 onNext = { result ->
                     if (result is RepositoryResult.Success) {
-                        rvSongs.adapter = SongsAdapter(
-                            this, result.body)
+                        rvSongs.adapter = SongsAdapter(this, result.body)
                     }
                 },
                 onError = {
