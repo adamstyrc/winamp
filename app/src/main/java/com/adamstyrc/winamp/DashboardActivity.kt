@@ -46,6 +46,14 @@ class DashboardActivity : AppCompatActivity() {
                 tvNoSongs.visibility = View.VISIBLE
             }
         })
+
+        viewModel.isLoading().observe(this, Observer { loading ->
+            if (loading == true) {
+                pbLoadingIndicator.visibility = View.VISIBLE
+            } else {
+                pbLoadingIndicator.visibility = View.GONE
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

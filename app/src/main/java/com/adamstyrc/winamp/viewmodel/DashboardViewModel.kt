@@ -22,6 +22,7 @@ class DashboardViewModel : ViewModel() {
     fun isLoading() : LiveData<Boolean> = loading
 
     fun searchSongs(searchText: String) {
+        loading.postValue(true)
         ITunesSongsRepository(api)
             .getSong(searchText)
             .subscribeBy(
@@ -31,9 +32,11 @@ class DashboardViewModel : ViewModel() {
                     } else {
                         songs.postValue(null)
                     }
+                    loading.postValue(false)
                 },
                 onError = {
                     songs.postValue(null)
+                    loading.postValue(false)
                 }
             )
     }
