@@ -25,11 +25,12 @@ class MainActivity : AppCompatActivity() {
         api = ITunesWebService(applicationContext).api
 
         vSearch.setOnQueryTextListener(object: MaterialSearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
+            override fun onQueryTextSubmit(query: String): Boolean {
                 return true
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
+            override fun onQueryTextChange(newText: String): Boolean {
+                searchSongs(newText)
                 return true
             }
         })
@@ -48,8 +49,11 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+    }
+
+    private fun searchSongs(searchText: String) {
         ITunesSongsRepository(api)
-            .getSong("a")
+            .getSong(searchText)
             .subscribeBy(
                 onNext = { result ->
                     if (result is RepositoryResult.Success) {
