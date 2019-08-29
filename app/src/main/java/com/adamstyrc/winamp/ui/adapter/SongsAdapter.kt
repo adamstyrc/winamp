@@ -1,6 +1,5 @@
 package com.adamstyrc.winamp.ui.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import com.adamstyrc.Song
 import com.adamstyrc.winamp.R
 
 class SongsAdapter(
-    val context: Context,
     val items: List<Song>
 ) : RecyclerView.Adapter<SongsAdapter.ViewHolder>() {
 

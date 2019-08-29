@@ -39,10 +39,10 @@ class DashboardActivity : AppCompatActivity() {
 
         viewModel.getSongs().observe(this, Observer { songs ->
             if (songs != null && songs.isNotEmpty()) {
-                rvSongs.adapter = SongsAdapter(this, songs)
+                rvSongs.adapter = SongsAdapter(songs)
                 tvNoSongs.visibility = View.GONE
             } else {
-                rvSongs.adapter = SongsAdapter(this, emptyList())
+                rvSongs.adapter = SongsAdapter(emptyList())
                 tvNoSongs.visibility = View.VISIBLE
             }
         })
