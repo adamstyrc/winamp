@@ -35,7 +35,7 @@ class SongsAdapter(
 
         fun bindCurrencyRate(song: Song, position: Int) {
             tvSongIndex.text = "$position."
-            tvSongName.text = song.name
+            tvSongName.text = "${song.name} - ${song.artist}"
             tvSongDuration.text = "${song.releaseYear}"
         }
     }

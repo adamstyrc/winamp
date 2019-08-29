@@ -13,7 +13,9 @@ data class ITunesSongsResponse(
         if (results == null) {
             emptyList()
         } else {
-            results!!.map {
+            results!!.filter { it.trackName != null
+                    && it.artistName != null }
+                .map {
                 Song(
                     it.trackName!!,
                     it.artistName!!,
