@@ -41,16 +41,18 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tbDashboard"
             tools:itemCount="35"
-            tools:listitem="@layout/item_song" />
+            tools:listitem="@layout/item_song"
+            />
 
     <TextView
+            android:id="@+id/tvNoSongs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No results found."
             app:layout_constraintBottom_toBottomOf="@id/rvSongs"
             app:layout_constraintLeft_toLeftOf="@id/rvSongs"
             app:layout_constraintRight_toRightOf="@id/rvSongs"
-            app:layout_constraintTop_toTopOf="@id/rvSongs" />
+            app:layout_constraintTop_toTopOf="@id/rvSongs"
+            android:text="@string/songs_list_empty"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
