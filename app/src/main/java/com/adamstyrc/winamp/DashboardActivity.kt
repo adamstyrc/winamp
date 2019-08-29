@@ -10,15 +10,15 @@ import com.adamstyrc.api.ITunesWebService
 import com.adamstyrc.winamp.ui.adapter.SongsAdapter
 import com.adamstyrc.winamp.viewmodel.DashboardViewModel
 import com.miguelcatalan.materialsearchview.MaterialSearchView
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_dashboard.*
 
-class MainActivity : AppCompatActivity() {
+class DashboardActivity : AppCompatActivity() {
 
     private lateinit var viewModel: DashboardViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_dashboard)
         setSupportActionBar(tbDashboard)
 
         viewModel = ViewModelProviders.of(this)
