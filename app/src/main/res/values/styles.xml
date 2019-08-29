@@ -14,4 +14,15 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+    <style name="MaterialSearchViewStyle">
+        <item name="searchBackground">@color/winamp_grey</item>
+        <item name="searchVoiceIcon">@drawable/ic_action_voice_search_inverted</item>
+        <item name="searchCloseIcon">@drawable/ic_action_navigation_close_inverted</item>
+        <item name="searchBackIcon">@drawable/ic_action_navigation_arrow_back_inverted</item>
+        <item name="searchSuggestionIcon">@drawable/ic_suggestion</item>
+        <item name="searchSuggestionBackground">@color/winamp_grey</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/grey</item>
+        <item name="android:hint">@string/search_hint</item>
+    </style>
 </resources>

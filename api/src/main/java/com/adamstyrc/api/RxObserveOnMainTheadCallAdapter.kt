@@ -17,13 +17,14 @@ class RxObserveOnMainTheadCallAdapter : CallAdapter.Factory() {
             return null
         }
 
-        val delegate = retrofit.nextCallAdapter(this, returnType, annotations) as CallAdapter<Observable<Any>, Any>
+        val delegate = retrofit.nextCallAdapter(this, returnType, annotations)
+                as CallAdapter<Observable<*>, *>
 
-        return object : CallAdapter<Observable<Any>, Observable<Any>> {
-            override fun adapt(call: Call<Observable<Any>>?): Observable<Any> {
-                val observable = delegate.adapt(call) as Observable<Any>
+        return object : CallAdapter<Observable<*>, Observable<*>> {
+
+            override fun adapt(call: Call<Observable<*>>): Observable<*> {
+                val observable = delegate.adapt(call) as Observable<*>
                 return observable.observeOn(AndroidSchedulers.mainThread())
-
             }
 
             override fun responseType(): Type {

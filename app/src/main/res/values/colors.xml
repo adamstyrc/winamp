@@ -7,4 +7,6 @@
     <color name="colorAccent">#FFFFD6</color>
     <color name="winamp_green">#54BF4E</color>
     <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey">#aaaaaa</color>
 </resources>
