@@ -3,6 +3,6 @@ package com.adamstyrc.extensions
 import java.text.SimpleDateFormat
 import java.util.*
 
-val yearFormat = SimpleDateFormat("yyyy", Locale.getDefault())
+private val YEAR_FORMAT = SimpleDateFormat("yyyy", Locale.US)
 
-fun Date.year() = yearFormat.format(this).toInt()
+fun Date.year() = YEAR_FORMAT.format(this).toInt()
