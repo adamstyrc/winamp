@@ -5,11 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.adamstyrc.Song
+import com.adamstyrc.models.Song
 import com.adamstyrc.winamp.R
 
 class SongsAdapter(
-    val items: List<Song>
+    val items: List<com.adamstyrc.models.Song>
 ) : RecyclerView.Adapter<SongsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,7 +31,7 @@ class SongsAdapter(
         var tvSongName: TextView = itemView.findViewById(R.id.tvSongName)
         var tvSongDuration: TextView = itemView.findViewById(R.id.tvSongDuration)
 
-        fun bindCurrencyRate(song: Song, position: Int) {
+        fun bindCurrencyRate(song: com.adamstyrc.models.Song, position: Int) {
             tvSongIndex.text = "$position."
             tvSongName.text = "${song.name} - ${song.artist}"
             tvSongDuration.text = "${song.releaseYear}"

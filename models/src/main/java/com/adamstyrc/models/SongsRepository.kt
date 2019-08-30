@@ -1,4 +1,4 @@
-package com.adamstyrc
+package com.adamstyrc.models
 
 import io.reactivex.Observable
 

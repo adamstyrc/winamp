@@ -1,4 +1,4 @@
-package com.adamstyrc
+package com.adamstyrc.models
 
 data class Song(
     var name: String,

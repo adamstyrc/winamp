@@ -1,8 +1,8 @@
 package com.adamstyrc.api
 
-import com.adamstyrc.RepositoryResult
-import com.adamstyrc.Song
-import com.adamstyrc.SongsRepository
+import com.adamstyrc.models.RepositoryResult
+import com.adamstyrc.models.Song
+import com.adamstyrc.models.SongsRepository
 import io.reactivex.Observable
 
 class ITunesSongsRepository(

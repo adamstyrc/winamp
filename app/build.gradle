@@ -21,7 +21,9 @@ android {
 }
 
 dependencies {
+    implementation project(":models")
     implementation project(":api")
+    implementation project(":database")
 
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 

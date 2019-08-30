@@ -1,6 +1,6 @@
 package com.adamstyrc.api.response
 
-import com.adamstyrc.Song
+import com.adamstyrc.models.Song
 import com.adamstyrc.extensions.year
 import java.util.*
 
@@ -16,11 +16,11 @@ data class ITunesSongsResponse(
             results!!.filter { it.trackName != null
                     && it.artistName != null }
                 .map {
-                Song(
-                    it.trackName!!,
-                    it.artistName!!,
-                    it.releaseDate?.year()
-                )
+                    com.adamstyrc.models.Song(
+                        it.trackName!!,
+                        it.artistName!!,
+                        it.releaseDate?.year()
+                    )
             }
         }
 
