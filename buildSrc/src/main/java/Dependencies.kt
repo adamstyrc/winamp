@@ -36,6 +36,8 @@ object Libraries {
     val retrofit2 = "io.reactivex.rxjava2:rxkotlin:2.0.2"
 
     val junit = "junit:junit:4.12"
+    val mockito = "org.mockito:mockito-core:2.23.4"
+
     val androidx_test_runner = "androidx.test:runner:1.2.0"
     val androidx_test_espresso_core = "androidx.test.espresso:espresso-core:3.2.0"
 

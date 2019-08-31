@@ -21,6 +21,7 @@ dependencies {
     implementation 'com.readystatesoftware.chuck:library:1.1.0'
 
     testImplementation Libraries.junit
+    testImplementation Libraries.mockito
     testImplementation Libraries.androidx_test_runner
     testImplementation Libraries.androidx_test_espresso_core
 }
