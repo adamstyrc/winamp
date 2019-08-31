@@ -9,8 +9,7 @@ dependencies {
     implementation Libraries.android_component_room
     implementation Libraries.gson
 
-
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation Libraries.junit
+    testImplementation Libraries.androidx_test_runner
+    testImplementation Libraries.androidx_test_espresso_core
 }
