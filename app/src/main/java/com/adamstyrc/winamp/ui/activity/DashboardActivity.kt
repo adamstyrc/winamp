@@ -43,6 +43,7 @@ class DashboardActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
+                // TODO wait for user to stop typing (optimisation: saves requests)
                 viewModel.searchSongs(newText)
                 return true
             }
