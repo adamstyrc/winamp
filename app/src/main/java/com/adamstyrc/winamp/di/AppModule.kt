@@ -14,6 +14,6 @@ val mainModule = module {
 }
 
 val mvvmModule = module {
-    viewModel { DashboardViewModel(get(), get ()) }
+    viewModel { DashboardViewModel(get(), get()) }
 }
 
