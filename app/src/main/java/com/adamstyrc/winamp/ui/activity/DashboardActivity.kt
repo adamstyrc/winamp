@@ -7,20 +7,17 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import com.adamstyrc.api.ITunesSongsRepository
-import com.adamstyrc.api.ITunesWebService
-import com.adamstyrc.database.LocalSongRepository
 import com.adamstyrc.winamp.R
 import com.adamstyrc.winamp.SongsSource
 import com.adamstyrc.winamp.ui.adapter.SongsAdapter
 import com.adamstyrc.winamp.viewmodel.DashboardViewModel
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.android.synthetic.main.activity_dashboard.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class DashboardActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: DashboardViewModel
+    private val viewModel: DashboardViewModel by viewModel()
     private lateinit var sourceAdapter: ArrayAdapter<SongsSource>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,13 +25,6 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dashboard)
         setSupportActionBar(tbDashboard)
 
-        viewModel = ViewModelProviders.of(this)
-            .get(DashboardViewModel::class.java)
-
-        viewModel.iTunesSongsRepository = ITunesSongsRepository(
-            ITunesWebService(applicationContext).api
-        )
-        viewModel.localSongRepository = LocalSongRepository(applicationContext)
         viewModel.setSongsSource(SongsSource.LOCAL)
 
         vSearch.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {

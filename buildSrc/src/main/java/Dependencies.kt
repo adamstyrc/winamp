@@ -10,6 +10,12 @@ object Versions {
 object Libraries {
     val kotlin_std_lib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.41"
 
+    val koin_kotlin = "org.koin:koin-core:2.0.1"
+    val koin_kotlin_ext = "org.koin:koin-core-ext:2.0.1"
+    val koin_android = "org.koin:koin-android:2.0.1"
+    val koin_android_ext = "org.koin:koin-android-ext:2.0.1"
+    val koin_android_viewmodel = "org.koin:koin-android-viewmodel:2.0.1"
+
     val androidx_core = "androidx.core:core-ktx:1.0.2"
     val androidx_appcompat = "androidx.appcompat:appcompat:1.0.0"
     val androidx_constraintlayout = "androidx.constraintlayout:constraintlayout:1.1.3"

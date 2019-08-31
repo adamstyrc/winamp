@@ -9,7 +9,10 @@ import com.adamstyrc.models.SongsRepository
 import com.adamstyrc.winamp.SongsSource
 import io.reactivex.rxkotlin.subscribeBy
 
-class DashboardViewModel : ViewModel() {
+class DashboardViewModel(
+    private val iTunesSongsRepository: ITunesSongsRepository,
+    private val localSongRepository: LocalSongRepository
+) : ViewModel() {
 
     private val loading =  MutableLiveData<Boolean>()
         .apply { value = false }
@@ -17,8 +20,6 @@ class DashboardViewModel : ViewModel() {
     private val songsSource = MutableLiveData<SongsSource>()
         .apply { value = SongsSource.LOCAL }
 
-    lateinit var iTunesSongsRepository: ITunesSongsRepository
-    lateinit var localSongRepository: LocalSongRepository
     private var currentRepository: SongsRepository? = null
 
     fun getSongs() : LiveData<List<com.adamstyrc.models.Song>> = songs

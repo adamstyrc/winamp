@@ -25,6 +25,12 @@ dependencies {
     implementation project(":api")
     implementation project(":database")
 
+    implementation Libraries.koin_kotlin
+    implementation Libraries.koin_kotlin_ext
+    implementation Libraries.koin_android
+    implementation Libraries.koin_android_ext
+    implementation Libraries.koin_android_viewmodel
+
     implementation Libraries.kotlin_std_lib
     implementation Libraries.androidx_core
     implementation Libraries.androidx_appcompat
