@@ -21,6 +21,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:title="@string/winamp" />
 
+    <Spinner
+        android:id="@+id/sSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tbDashboard"
+            app:layout_constraintBottom_toBottomOf="@id/tbDashboard"
+            android:popupBackground="@color/winamp_grey"
+            android:elevation="4dp"
+            tools:listitem="@layout/item_source"
+            />
+
     <ProgressBar
             android:id="@+id/pbLoadingIndicator"
             android:layout_width="match_parent"

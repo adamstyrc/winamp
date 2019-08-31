@@ -14,14 +14,16 @@ class DashboardViewModel : ViewModel() {
     private val loading =  MutableLiveData<Boolean>()
         .apply { value = false }
     private val songs = MutableLiveData<List<com.adamstyrc.models.Song>>()
+    private val songsSource = MutableLiveData<SongsSource>()
+        .apply { value = SongsSource.LOCAL }
 
     lateinit var iTunesSongsRepository: ITunesSongsRepository
     lateinit var localSongRepository: LocalSongRepository
     private var currentRepository: SongsRepository? = null
 
     fun getSongs() : LiveData<List<com.adamstyrc.models.Song>> = songs
-
     fun isLoading() : LiveData<Boolean> = loading
+    fun getSongsSource() : LiveData<SongsSource> = songsSource
 
     fun searchSongs(searchText: String) {
         loading.postValue(true)
@@ -48,5 +50,7 @@ class DashboardViewModel : ViewModel() {
             SongsSource.REMOTE -> currentRepository = iTunesSongsRepository
             SongsSource.LOCAL -> currentRepository = localSongRepository
         }
+
+        searchSongs("")
     }
 }
