@@ -6,7 +6,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.adamstyrc.api.ITunesSongsRepository
 import com.adamstyrc.api.ITunesWebService
+import com.adamstyrc.database.LocalSongRepository
 import com.adamstyrc.winamp.ui.adapter.SongsAdapter
 import com.adamstyrc.winamp.viewmodel.DashboardViewModel
 import com.miguelcatalan.materialsearchview.MaterialSearchView
@@ -24,7 +26,10 @@ class DashboardActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this)
             .get(DashboardViewModel::class.java)
 
-        viewModel.api = ITunesWebService(applicationContext).api
+        viewModel.iTunesSongsRepository = ITunesSongsRepository(
+            ITunesWebService(applicationContext).api)
+        viewModel.localSongRepository = LocalSongRepository(applicationContext)
+        viewModel.setSongsSource(SongsSource.LOCAL)
 
         vSearch.setOnQueryTextListener(object: MaterialSearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {

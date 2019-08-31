@@ -9,7 +9,7 @@ class ITunesSongsRepository(
     private val iTunesApi: ITunesApi
 ) : SongsRepository {
 
-    override fun getSong(name: String): Observable<RepositoryResult<List<Song>>> {
+    override fun getSongs(name: String): Observable<RepositoryResult<List<Song>>> {
         return iTunesApi.getSearch(name)
             .map { songsResponse ->
                 if (songsResponse.isSuccessful) {

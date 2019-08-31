@@ -3,10 +3,10 @@ package com.adamstyrc.winamp.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.adamstyrc.models.RepositoryResult
-import com.adamstyrc.models.Song
-import com.adamstyrc.api.ITunesApi
 import com.adamstyrc.api.ITunesSongsRepository
+import com.adamstyrc.database.LocalSongRepository
+import com.adamstyrc.models.SongsRepository
+import com.adamstyrc.winamp.SongsSource
 import io.reactivex.rxkotlin.subscribeBy
 
 class DashboardViewModel : ViewModel() {
@@ -15,7 +15,9 @@ class DashboardViewModel : ViewModel() {
         .apply { value = false }
     private val songs = MutableLiveData<List<com.adamstyrc.models.Song>>()
 
-    lateinit var api: ITunesApi
+    lateinit var iTunesSongsRepository: ITunesSongsRepository
+    lateinit var localSongRepository: LocalSongRepository
+    private var currentRepository: SongsRepository? = null
 
     fun getSongs() : LiveData<List<com.adamstyrc.models.Song>> = songs
 
@@ -23,9 +25,9 @@ class DashboardViewModel : ViewModel() {
 
     fun searchSongs(searchText: String) {
         loading.postValue(true)
-        ITunesSongsRepository(api)
-            .getSong(searchText)
-            .subscribeBy(
+        currentRepository
+            ?.getSongs(searchText)
+            ?.subscribeBy(
                 onNext = { result ->
                     if (result is com.adamstyrc.models.RepositoryResult.Success) {
                         songs.postValue(result.body)
@@ -41,5 +43,10 @@ class DashboardViewModel : ViewModel() {
             )
     }
 
-
+    fun setSongsSource(songsSource: SongsSource) {
+        when (songsSource) {
+            SongsSource.REMOTE -> currentRepository = iTunesSongsRepository
+            SongsSource.LOCAL -> currentRepository = localSongRepository
+        }
+    }
 }

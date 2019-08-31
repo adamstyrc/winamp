@@ -7,6 +7,7 @@ dependencies {
     implementation Libraries.androidx_core
     implementation Libraries.androidx_appcompat
     implementation Libraries.android_component_room
+    implementation Libraries.gson
 
 
     testImplementation 'junit:junit:4.12'
