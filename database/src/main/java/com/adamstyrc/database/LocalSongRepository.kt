@@ -1,3 +1,5 @@
+@file:Suppress("KotlinDeprecation")
+
 package com.adamstyrc.database
 
 import android.content.Context
@@ -9,8 +11,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
-import java.util.*
-import kotlin.collections.ArrayList
 
 class LocalSongRepository(
     applicationContext: Context

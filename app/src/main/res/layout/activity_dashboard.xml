@@ -8,7 +8,8 @@
         android:layout_height="match_parent"
         android:background="@color/black"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:showIn="@layout/activity_dashboard">
+        tools:showIn="@layout/activity_dashboard"
+        tools:ignore="Overdraw">
 
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/tbDashboard"
