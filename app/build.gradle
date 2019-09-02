@@ -43,7 +43,7 @@ dependencies {
     implementation Libraries.androidx_lifecycle_extensions
     implementation Libraries.androidx_lifecycle_viewmodel_ktx
     implementation Libraries.google_material
-    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+    implementation Libraries.materialsearchview
 
     api Libraries.rxjava2
     api Libraries.rxjava2_rxandroid

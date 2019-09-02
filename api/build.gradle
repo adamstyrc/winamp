@@ -11,14 +11,14 @@ dependencies {
     api Libraries.rxjava2_rxandroid
     api Libraries.rxjava2_rxkotlin
 
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation('com.squareup.retrofit2:adapter-rxjava2:2.3.0') {
+    implementation Libraries.retrofit
+    implementation Libraries.retrofit_converter
+    implementation(Libraries.retrofit_adapter_rxjava) {
         exclude group: 'rx.exceptions', module: 'rxjava2'
     }
 
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
-    implementation 'com.readystatesoftware.chuck:library:1.1.0'
+    implementation Libraries.okhttp3_logging_interceptor
+    implementation Libraries.chuck
 
     testImplementation Libraries.junit
     testImplementation Libraries.mockito

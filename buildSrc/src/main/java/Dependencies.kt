@@ -32,7 +32,14 @@ object Libraries {
     val rxjava2_rxandroid = "io.reactivex.rxjava2:rxandroid:2.0.1"
     val rxjava2_rxkotlin = "io.reactivex.rxjava2:rxkotlin:2.0.2"
 
+    val retrofit = "com.squareup.retrofit2:retrofit:2.5.0"
+    val retrofit_converter = "com.squareup.retrofit2:converter-gson:2.5.0"
+    val retrofit_adapter_rxjava = "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+    val okhttp3_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:3.10.0"
+    val chuck = "com.readystatesoftware.chuck:library:1.1.0"
     val gson = "com.google.code.gson:gson:2.8.5"
+
+    val materialsearchview = "com.miguelcatalan:materialsearchview:1.4.0"
 
     // TEST LIBRARIES
     val junit = "junit:junit:4.12"
