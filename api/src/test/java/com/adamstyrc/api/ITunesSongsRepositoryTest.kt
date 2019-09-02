@@ -23,6 +23,10 @@ class ITunesSongsRepositoryTest {
         val repositoryResultSuccess = repositoryResult as? RepositoryResult.Success
         assertNotNull(repositoryResultSuccess)
         val songs = repositoryResultSuccess!!.body
+        assertEquals(1, songs.size)
+        val song = songs[0]
+        assertEquals(successResponseBody.results!![0].trackName, song.name)
+        assertEquals(successResponseBody.results!![0].artistName, song.artist)
     }
 
     @Test
@@ -35,8 +39,8 @@ class ITunesSongsRepositoryTest {
         val repositoryResult = songsRepository.getSongs("")
             .blockingFirst()
 
-        val repositoryResultSuccess = repositoryResult as? RepositoryResult.Failure
-        assertNotNull(repositoryResultSuccess)
+        val repositoryResultFailure = repositoryResult as? RepositoryResult.Failure
+        assertNotNull(repositoryResultFailure)
     }
 
     private var api: ITunesApi = mock(ITunesApi::class.java)
