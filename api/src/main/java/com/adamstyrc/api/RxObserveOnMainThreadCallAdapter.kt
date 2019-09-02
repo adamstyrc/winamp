@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import java.lang.reflect.Type
 
 
-class RxObserveOnMainTheadCallAdapter : CallAdapter.Factory() {
+class RxObserveOnMainThreadCallAdapter : CallAdapter.Factory() {
 
     override fun get(returnType: Type, annotations: Array<out Annotation>, retrofit: Retrofit)
             : CallAdapter<*, *>? {
