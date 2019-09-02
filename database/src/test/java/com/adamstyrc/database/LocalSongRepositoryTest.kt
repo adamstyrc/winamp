@@ -15,7 +15,7 @@ class LocalSongRepositoryTest {
     private val context = getApplicationContext<Context>()
     private val localSongRepository = LocalSongRepository(context)
 
-    fun a() {
+    fun `get non-empty result for "door" phrase`() {
         val repositoryResult = localSongRepository.getSongs("door")
             .blockingFirst()
         val repositoryResultSuccess = repositoryResult as? RepositoryResult.Success<List<Song>>
