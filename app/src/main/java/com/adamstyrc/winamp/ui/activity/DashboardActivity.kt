@@ -25,8 +25,6 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dashboard)
         setSupportActionBar(tbDashboard)
 
-        viewModel.setSongsSource(SongsSource.LOCAL)
-
         vSearch.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return true

@@ -7,6 +7,7 @@ import com.adamstyrc.api.ITunesSongsRepository
 import com.adamstyrc.database.LocalSongRepository
 import com.adamstyrc.models.SongsRepository
 import com.adamstyrc.winamp.SongsSource
+import io.reactivex.disposables.Disposables
 import io.reactivex.rxkotlin.subscribeBy
 
 class DashboardViewModel(
@@ -20,7 +21,8 @@ class DashboardViewModel(
     private val songsSource = MutableLiveData<SongsSource>()
         .apply { value = SongsSource.LOCAL }
 
-    private var currentRepository: SongsRepository? = null
+    private var disposable = Disposables.disposed()
+    private var currentRepository: SongsRepository = localSongRepository
 
     fun getSongs() : LiveData<List<com.adamstyrc.models.Song>> = songs
     fun isLoading() : LiveData<Boolean> = loading
@@ -28,9 +30,10 @@ class DashboardViewModel(
 
     fun searchSongs(searchText: String) {
         loading.postValue(true)
-        currentRepository
-            ?.getSongs(searchText)
-            ?.subscribeBy(
+        disposable.dispose()
+        disposable = currentRepository
+            .getSongs(searchText)
+            .subscribeBy(
                 onNext = { result ->
                     if (result is com.adamstyrc.models.RepositoryResult.Success) {
                         songs.postValue(result.body)
@@ -53,5 +56,10 @@ class DashboardViewModel(
         }
 
         searchSongs("")
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposable.dispose()
     }
 }
