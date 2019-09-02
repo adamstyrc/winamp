@@ -8,7 +8,7 @@ object Versions {
 }
 
 object Libraries {
-    val kotlin_std_lib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.41"
+    val kotlin_std_lib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
 
     val koin_kotlin = "org.koin:koin-core:2.0.1"
     val koin_kotlin_ext = "org.koin:koin-core-ext:2.0.1"
@@ -50,5 +50,5 @@ object Libraries {
 
 object GradlePlugins {
     val android = "com.android.tools.build:gradle:3.5.0"
-    val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.50"
+    val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
 }

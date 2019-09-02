@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Winamp</string>
-    <string name="action_settings">Settings</string>
     <string name="winamp">Winamp</string>
     <string name="songs_list_empty">No results found.</string>
 </resources>

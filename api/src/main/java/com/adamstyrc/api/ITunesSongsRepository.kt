@@ -14,7 +14,7 @@ class ITunesSongsRepository(
             .map { songsResponse ->
                 if (songsResponse.isSuccessful) {
                     val body = songsResponse.body()!!
-                    RepositoryResult.Success<List<Song>>(body.toSongs())
+                    RepositoryResult.Success(body.toSongs())
                 } else {
                     RepositoryResult.Failure<List<Song>>(errorCode = songsResponse.code())
                 }

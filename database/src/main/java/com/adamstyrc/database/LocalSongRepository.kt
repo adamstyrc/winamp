@@ -1,6 +1,7 @@
 package com.adamstyrc.database
 
 import android.content.Context
+import com.adamstyrc.models.DEFAULT_LOCALE
 import com.adamstyrc.models.RepositoryResult
 import com.adamstyrc.models.Song
 import com.adamstyrc.models.SongsRepository
@@ -8,6 +9,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import java.util.*
+import kotlin.collections.ArrayList
 
 class LocalSongRepository(
     applicationContext: Context
@@ -29,11 +32,11 @@ class LocalSongRepository(
     }
 
     override fun getSongs(name: String): Observable<RepositoryResult<List<Song>>> {
-        val nameLowerCase = name.toLowerCase()
+        val nameLowerCase = name.toLowerCase(DEFAULT_LOCALE)
         return Observable.just(songs)
             .map { songs -> songs.filter {
-                it.name.toLowerCase().contains(nameLowerCase)
-                        || it.artist.toLowerCase().contains(nameLowerCase)
+                it.name.toLowerCase(DEFAULT_LOCALE).contains(nameLowerCase)
+                        || it.artist.toLowerCase(DEFAULT_LOCALE).contains(nameLowerCase)
             }}
             .map { songs -> RepositoryResult.Success(songs) as RepositoryResult<List<Song>>}
             .subscribeOn(Schedulers.io())

@@ -1,5 +1,6 @@
 package com.adamstyrc.winamp.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,7 @@ import com.adamstyrc.models.Song
 import com.adamstyrc.winamp.R
 
 class SongsAdapter(
-    val items: List<com.adamstyrc.models.Song>
+    private val items: List<Song>
 ) : RecyclerView.Adapter<SongsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,7 +32,8 @@ class SongsAdapter(
         var tvSongName: TextView = itemView.findViewById(R.id.tvSongName)
         var tvSongDuration: TextView = itemView.findViewById(R.id.tvSongDuration)
 
-        fun bindCurrencyRate(song: com.adamstyrc.models.Song, position: Int) {
+        @SuppressLint("SetTextI18n")
+        fun bindCurrencyRate(song: Song, position: Int) {
             tvSongIndex.text = "$position."
             tvSongName.text = "${song.name} - ${song.artist}"
             tvSongDuration.text = "${song.releaseYear}"
