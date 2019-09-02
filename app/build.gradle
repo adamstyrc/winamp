@@ -46,6 +46,10 @@ dependencies {
     api Libraries.rxjava2_rxkotlin
 
     testImplementation Libraries.junit
+    testImplementation Libraries.mockito
+    testImplementation Libraries.mockito_inline
     testImplementation Libraries.androidx_test_runner
+    testImplementation Libraries.androidx_test_ext_junit
     testImplementation Libraries.androidx_test_espresso_core
+    testImplementation Libraries.android_arch_core_testing
 }
