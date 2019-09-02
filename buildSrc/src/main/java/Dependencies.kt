@@ -33,7 +33,6 @@ object Libraries {
     val rxjava2_rxkotlin = "io.reactivex.rxjava2:rxkotlin:2.0.2"
 
     val gson = "com.google.code.gson:gson:2.8.5"
-    val retrofit2 = "io.reactivex.rxjava2:rxkotlin:2.0.2"
 
     // TEST LIBRARIES
     val junit = "junit:junit:4.12"
@@ -42,7 +41,8 @@ object Libraries {
     val mockito_inline = "org.mockito:mockito-inline:2.13.0"
     val androidx_test_core = "androidx.test:core:1.0.0"
     val androidx_test_runner = "androidx.test:runner:1.2.0"
-    val androidx_test_ext_junit = "androidx.test.ext:junit:1.0.0"
+    val androidx_test_rules = "androidx.test:rules:1.2.0"
+    val androidx_test_ext_junit = "androidx.test.ext:junit:1.1.0"
     val androidx_test_espresso_core = "androidx.test.espresso:espresso-core:3.2.0"
     val android_arch_core_testing = "android.arch.core:core-testing:1.0.0"
 

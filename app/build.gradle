@@ -57,4 +57,12 @@ dependencies {
     testImplementation Libraries.androidx_test_ext_junit
     testImplementation Libraries.androidx_test_espresso_core
     testImplementation Libraries.android_arch_core_testing
+
+    androidTestImplementation Libraries.androidx_test_core
+    androidTestImplementation Libraries.androidx_test_rules
+    androidTestImplementation Libraries.androidx_test_runner
+    androidTestImplementation Libraries.androidx_test_ext_junit
+//    androidTestImplementation Libraries.androidx_test_ext_junit_ktx
+    androidTestImplementation Libraries.androidx_test_espresso_core
+    androidTestImplementation Libraries.android_arch_core_testing
 }
