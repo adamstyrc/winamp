@@ -10,6 +10,9 @@ dependencies {
     implementation Libraries.gson
 
     testImplementation Libraries.junit
+    testImplementation Libraries.robolectric
+    testImplementation Libraries.androidx_test_core
     testImplementation Libraries.androidx_test_runner
+    testImplementation Libraries.androidx_test_ext_junit
     testImplementation Libraries.androidx_test_espresso_core
 }

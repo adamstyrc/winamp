@@ -7,6 +7,7 @@ import com.adamstyrc.api.ITunesSongsRepository
 import com.adamstyrc.database.LocalSongRepository
 import com.adamstyrc.models.SongsRepository
 import com.adamstyrc.winamp.SongsSource
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposables
 import io.reactivex.rxkotlin.subscribeBy
 
@@ -33,6 +34,7 @@ class DashboardViewModel(
         disposable.dispose()
         disposable = currentRepository
             .getSongs(searchText)
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onNext = { result ->
                     if (result is com.adamstyrc.models.RepositoryResult.Success) {

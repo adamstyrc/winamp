@@ -7,7 +7,6 @@ import com.adamstyrc.models.SongsRepository
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class LocalSongRepository(
@@ -38,7 +37,7 @@ class LocalSongRepository(
             }}
             .map { songs -> RepositoryResult.Success(songs) as RepositoryResult<List<Song>>}
             .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+//            .observeOn(AndroidSchedulers.mainThread())
     }
 
     private fun getJsonFromAssets(filename: String, context: Context): String {
