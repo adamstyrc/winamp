@@ -6,38 +6,76 @@ import androidx.lifecycle.ViewModel
 import com.adamstyrc.api.ITunesSongsRepository
 import com.adamstyrc.database.LocalSongRepository
 import com.adamstyrc.models.RepositoryResult
-import com.adamstyrc.models.SongsRepository
+import com.adamstyrc.models.Song
 import com.adamstyrc.winamp.SongsSource
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposables
+import io.reactivex.rxkotlin.Observables
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 class DashboardViewModel(
     private val iTunesSongsRepository: ITunesSongsRepository,
     private val localSongRepository: LocalSongRepository
 ) : ViewModel() {
 
-    private val loading =  MutableLiveData<Boolean>()
+    private val loading = MutableLiveData<Boolean>()
         .apply { value = false }
-    private val songs = MutableLiveData<List<com.adamstyrc.models.Song>>()
+    private val songs = MutableLiveData<List<Song>>()
     private val songsSource = MutableLiveData<SongsSource>()
         .apply { value = SongsSource.LOCAL }
 
     private var disposable = Disposables.disposed()
-    private var currentRepository: SongsRepository = localSongRepository
 
-    fun getSongs() : LiveData<List<com.adamstyrc.models.Song>> = songs
-    fun isLoading() : LiveData<Boolean> = loading
-    fun getSongsSource() : LiveData<SongsSource> = songsSource
+    private var repositories: List<SongsSource> = arrayListOf(
+        SongsSource.LOCAL,
+        SongsSource.REMOTE
+    )
+
+    init {
+        searchSongs("")
+    }
+
+    fun getSongs(): LiveData<List<Song>> = songs
+
+    fun isLoading(): LiveData<Boolean> = loading
 
     fun searchSongs(searchText: String) {
         loading.postValue(true)
         disposable.dispose()
-        disposable = currentRepository
-            .getSongs(searchText)
+
+        val observables =
+            repositories
+                .map {
+                    when (it) {
+                        SongsSource.LOCAL -> localSongRepository
+                        SongsSource.REMOTE -> iTunesSongsRepository
+                    }
+                }
+                .map {
+                    it.getSongs(searchText)
+                }
+        disposable = Observables.zip(
+            observables[0],
+            observables[1],
+            { localSongsResult, remoteSongsResult ->
+                listOf(localSongsResult, remoteSongsResult)
+            })
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
-                onNext = { result ->
-                    if (result is RepositoryResult.Success) {
-                        songs.postValue(result.body)
+                onNext = { results ->
+                    var fetchedSongs = arrayListOf<Song>()
+
+                    results.forEach { result ->
+                        if (result is RepositoryResult.Success) {
+                            fetchedSongs.addAll(result.body)
+                        }
+                    }
+
+                    if (fetchedSongs.isNotEmpty()) {
+                        songs.postValue(fetchedSongs)
                     } else {
                         songs.postValue(null)
                     }
@@ -49,16 +87,6 @@ class DashboardViewModel(
                 }
             )
     }
-
-    fun setSongsSource(songsSource: SongsSource) {
-        when (songsSource) {
-            SongsSource.REMOTE -> currentRepository = iTunesSongsRepository
-            SongsSource.LOCAL -> currentRepository = localSongRepository
-        }
-
-        searchSongs("")
-    }
-
     override fun onCleared() {
         super.onCleared()
         disposable.dispose()

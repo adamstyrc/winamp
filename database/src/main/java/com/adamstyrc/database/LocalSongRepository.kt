@@ -10,19 +10,16 @@ import com.adamstyrc.models.SongsRepository
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 
 class LocalSongRepository(
-    applicationContext: Context
+    val applicationContext: Context
 ) : SongsRepository {
 
-    private val songs: List<Song>
-
-    init {
-        songs = provideSongsFromJson(applicationContext)
-    }
-
     private fun provideSongsFromJson(applicationContext: Context): List<Song> {
+        println("provideSongsFromJson, thread: ${Thread.currentThread()}")
+
         val jsonString = getJsonFromAssets("songs-list.json", applicationContext)
         val listType = object : TypeToken<ArrayList<SongJsonEntity>>() {}.type
         val songEntities = Gson().fromJson<ArrayList<SongJsonEntity>>(jsonString, listType)
@@ -32,15 +29,15 @@ class LocalSongRepository(
     }
 
     override fun getSongs(name: String): Observable<RepositoryResult<List<Song>>> {
+        println("getSongs, thread: ${Thread.currentThread()}")
         val nameLowerCase = name.toLowerCase(DEFAULT_LOCALE)
-        return Observable.just(songs)
+        return Observable.fromCallable { provideSongsFromJson(applicationContext) }
             .map { songs -> songs.filter {
                 it.name.toLowerCase(DEFAULT_LOCALE).contains(nameLowerCase)
                         || it.artist.toLowerCase(DEFAULT_LOCALE).contains(nameLowerCase)
             }}
             .map { songs -> RepositoryResult.Success(songs) as RepositoryResult<List<Song>>}
             .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
     }
 
     private fun getJsonFromAssets(filename: String, context: Context): String {

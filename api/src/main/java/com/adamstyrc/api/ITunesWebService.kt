@@ -30,7 +30,7 @@ class ITunesWebService(
         val retrofit = Retrofit.Builder()
             .baseUrl(SERVER_ADDRESS)
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .addCallAdapterFactory(RxObserveOnMainThreadCallAdapter())
+//            .addCallAdapterFactory(RxObserveOnMainThreadCallAdapter())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .client(provideHttpClient())
             .build()
